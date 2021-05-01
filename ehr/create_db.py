@@ -45,7 +45,7 @@ class Patient(db.Model, UserMixin):
 class Admin(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(50), unique=True, nullable=False)
-	password = db.Column(db.String(20), nullable=False)
+	password = db.Column(db.String(255), nullable=False)
 	has_toured = db.Column(db.Boolean, nullable=False, default=False)
 
 	def get_reset_token(self, expires_sec=1800):
