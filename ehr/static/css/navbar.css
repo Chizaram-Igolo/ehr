@@ -1,0 +1,119 @@
+.nav-header {
+  width: 100%;
+  height: 50px;
+  padding: 0px;
+  position: relative;
+  top: 0px;
+  margin-top: 0px;
+  margin-bottom: 22px;
+}
+
+.nav-header h1 {
+  height: 50px;
+  margin-top: 35px;
+  padding: 4px 10px;
+  text-align: left;
+  font-size: 1.9em;
+  position: relative;
+}
+
+.icon-link-item {
+  position: absolute;
+  height: 40px;
+  margin-top: 0px;
+  text-decoration: none !important;
+  color: #000 !important;
+  font-weight: 800;
+}
+
+.nav-bar {
+  min-width: 250px;
+  min-height: 600px;
+  width: 0.2%;
+  float: left;
+  position: fixed;
+  padding: 0px 10px 10px 10px !important;
+  height: 100vh;
+  border-right: 1px solid #ddd;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #ffffff;
+  z-index: 100;
+}
+
+ul {
+  list-style: none;
+  /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+
+a:hover {
+    text-decoration: none
+    color: black;
+}
+
+.nav-bar-link-li-first {
+  height: 50px;
+  padding: 14px 26px 35px 30px;
+  text-decoration: none;
+  color: #181818;
+  position: relative;
+  font-size: 1.2em;
+}
+
+.nav-bar-link-li {
+  height: 50px;
+  padding: 14px 26px 35px 30px;
+  text-decoration: none;
+  color: #181818;
+  position: relative;
+  font-size: 1.2em;
+  font-family: "IBM_Plex_Sans_SemiBold";
+}
+
+.nav-bar-link-item {
+  position: relative;
+}
+
+.nav-bar-link-item:hover .nav-link-text {
+  text-decoration: none !important;
+  color: black;
+}
+
+.wrapping-span {
+  display: "inline-block";
+  padding: 8px;
+  border-radius: 50%;
+}
+
+span.nav-link-text {
+  position: absolute;
+  top: 15px;
+  width: 180px;
+  padding: 0px 10px 5px 20px;
+  font-size: 1.075em;
+  color: #181818;
+  text-decoration: none !important;
+}
+
+.nav-link-text:hover {
+  text-decoration: none !important;
+  color: black;
+}
+
+.hamburger-div {
+  position: absolute;
+  bottom: 30px;
+  height: auto;
+  padding: 1px 0px;
+}
+
+.hamburger-icon {
+  background-color: transparent;
+  border: 0px solid;
+  outline: none;
+  padding: 2px 1px;
+}

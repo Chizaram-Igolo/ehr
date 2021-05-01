@@ -1,0 +1,68 @@
+.emptystate-div {
+  display: block;
+  min-width: 250px;
+  width: 450px;
+  height: auto;
+  margin: 150px auto;
+  padding: 20px 40px 5px 40px;
+  background-color: #ffffff;
+  border: 1px solid #e3e3ea;
+  border-radius: 0.1875rem;
+}
+
+.emptystate-div h3 {
+  font-family: IBM_Plex_Sans_SemiBold;
+  font-size: 1.4rem;
+  text-align: center;
+  padding: 0px 0px 12px 0px;
+}
+
+.emptystate-div p {
+  text-align: center;
+}
+
+.emptystate-div button {
+  display: block;
+  margin: 25px auto 10px auto;
+  padding: 6px 20px;
+}
+
+.emptystate-div button,
+.emptystate-div button:hover,
+.emptystate-div button:active,
+.emptystate-div button:focus,
+.emptystate-div button:visited {
+  background-color: #02b875 !important;
+  border-color: #02b875 !important;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:visited,
+.btn-primary:focus,
+.btn-primary.focus {
+  background-color: #02b875 !important;
+  border-color: #02b875 !important;
+}
+
+.btn-primary:active,
+.emptystate-div button.active {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(2, 158, 80, 0.25) !important;
+          box-shadow: 0 0 0 0.2rem rgba(2, 158, 80, 0.25) !important;
+}
+
+.btn-primary:focus,
+.emptystate-div button.focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(2, 158, 80, 0.25) !important;
+          box-shadow: 0 0 0 0.2rem rgba(2, 158, 80, 0.25) !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #02b875;
+  border-color: #02b875;
+}

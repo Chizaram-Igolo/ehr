@@ -1,0 +1,499 @@
+{% extends "user_layout.html" %}
+{% block content %}
+	<div class="content-container-collapsed">
+		<div class="contacts-container-div">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+			<div class="header">
+				<h1>{{ title }}</h1>
+
+
+            {% if patients.items|length > 0 %}
+				<button type="button" class="btn btn-primary" 
+						data-trigger="#side-menu" 
+						style="position: absolute; top: 90px; right: 0px;">+ Add Record</button>
+            {% endif %}
+
+			</div>
+
+            {% if patients.items|length > 0 %}
+                <div class="contacts-table-div">
+                <table class="table">
+                    <thead class="table-thead">
+                        <tr>
+                            <th>Patient</th>
+                            <th>Patient No.</th>
+                            <th>Phone Number</th>
+                            <th>Date of Birth</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>Marital Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                        {% for patient in patients.items %}
+                            <tr>
+                                <td>
+                                    <div class="details-div"> 
+                                        <a href="{{ url_for('single_patient', patient_id=patient.id) }}">  
+                                            {{ patient.name }} <br/>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>{{ patient.id }}</td>
+                                <td>{{ patient.phone }}</td>
+                                <td>{{ patient.birth_date.strftime('%d-%m-%Y') }}</td>
+                                <td>{{ patient.age }}</td>
+                                <td>{{ patient.sex }}</td>
+                                <td>{{ patient.marital_status }}</td>
+                            </tr>
+                        </a>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+                <br/>
+            {% for page_num in patients.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if page_num %}
+                {% if patients.page == page_num %}
+                    <a class="btn btn-success mb-4" href="{{ url_for('record', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-success mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %} 
+
+        {% else %}
+
+
+			<div class="emptystate-div">
+				<p>
+				<img src="{{ url_for('static', filename='svgs/person-add-outline.svg') }}" width="48px" style="color: #DDDDDD;"/>
+				</p>
+				<h3>You have no records yet</h3>
+				<p>
+                    Let's help you begin organizing your
+                    records. Click the button below to get
+                    started.
+                </p>
+                <button type="button"
+                        class="btn btn-primary"
+                        data-trigger="#side-menu">Add Record</button>
+			</div>
+        {% endif %}
+
+			<b class="screen-overlay"></b>
+			<aside class="offcanvas" id="side-menu">
+				<header class="p-4 bg-light border-bottom side-menu-header">
+					<h4 class="top-side-heading">Add Record</h4>
+					<button class="btn btn-danger btn-close">Close</button>
+				</header>
+
+				<div class="side-menu-div">
+					<div class="accordion" id="accordionExample">
+                      <div class="card">
+                        <h2 class="card-header" id="headingOne">
+                          <button class="btn btn-link btn-block text-left" 
+                          type="button" data-toggle="collapse" 
+                          data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h4>Patient Information</h4>
+                            <p class="top-side-p">Please, enter in patient information</p>
+                          </button>
+                        </h2>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                          <div class="card-body">
+                            <div class="alert alert-info fade show"
+                                        role="alert"
+                                        style="font-size: 0.975em;"
+                                    >
+                            Patient number is automatically generated and unique.<br/>
+                            </div>
+
+                            <form method="POST" action="" class="mt-4" enctype="multipart/form-data">
+                                {{ form.hidden_tag() }}
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Name
+                                        </span>
+                                    </div>
+                                    {% if form.name.errors %}
+                                        {{ form.name(class="form-control is-invalid") }}
+                                          {% for error in form.name.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.name(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Address
+                                        </span>
+                                    </div>
+                                    {% if form.address.errors %}
+                                        {{ form.address(class="form-control is-invalid") }}
+                                          {% for error in form.address.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.address(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Birth Date
+                                        </span>
+                                    </div>
+                                    {% if form.birth_date.errors %}
+                                        {{ form.birth_date(class="form-control is-invalid") }}
+                                          {% for error in form.birth_date.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.birth_date(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Sex
+                                        </span>
+                                    </div>
+                                    {% if form.sex.errors %}
+                                        {{ form.sex(class="form-control is-invalid") }}
+                                          {% for error in form.sex.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.sex(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Post
+                                        </span>
+                                    </div>
+                                    {% if form.post.errors %}
+                                        {{ form.post(class="form-control is-invalid") }}
+                                          {% for error in form.post.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.post(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Unit
+                                        </span>
+                                    </div>
+                                    {% if form.unit.errors %}
+                                        {{ form.unit(class="form-control is-invalid") }}
+                                          {% for error in form.unit.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.unit(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">Phone</span>
+                                    </div>
+                                    {% if form.phone.errors %}
+                                        {{ form.phone(class="form-control is-invalid") }}
+                                          {% for error in form.phone.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.phone(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">Age</span>
+                                    </div>
+                                    {% if form.age.errors %}
+                                        {{ form.age(class="form-control is-invalid") }}
+                                          {% for error in form.age.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.age(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Origin
+                                        </span>
+                                    </div>
+                                    {% if form.origin.errors %}
+                                        {{ form.origin(class="form-control is-invalid") }}
+                                          {% for error in form.origin.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.origin(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Local Government
+                                        </span>
+                                    </div>
+                                    {% if form.lg.errors %}
+                                        {{ form.lg(class="form-control is-invalid") }}
+                                          {% for error in form.lg.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.lg(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Marital Status
+                                        </span>
+                                    </div>
+                                    {% if form.marital_status.errors %}
+                                        {{ form.marital_status(class="form-control is-invalid") }}
+                                          {% for error in form.marital_status.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.marital_status(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Picture
+                                        </span>
+                                    </div>
+                                    {% if form.picture.errors %}
+                                        {{ form.picture(class="form-control is-invalid") }}
+                                          {% for error in form.picture.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.picture(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Next of Kin
+                                        </span>
+                                    </div>
+                                    {% if form.kin_name.errors %}
+                                        {{ form.kin_name(class="form-control is-invalid") }}
+                                          {% for error in form.kin_name.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.kin_name(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Next of Kin's address
+                                        </span>
+                                    </div>
+                                    {% if form.kin_address.errors %}
+                                        {{ form.kin_address(class="form-control is-invalid") }}
+                                          {% for error in form.kin_address.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.kin_address(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Next of Kin's occupation
+                                        </span>
+                                    </div>
+                                    {% if form.kin_occupation.errors %}
+                                        {{ form.kin_occupation(class="form-control is-invalid") }}
+                                          {% for error in form.kin_occupation.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.kin_occupation(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            Next of Kin's Phone No.
+                                        </span>
+                                    </div>
+                                    {% if form.kin_phone.errors %}
+                                        {{ form.kin_phone(class="form-control is-invalid") }}
+                                          {% for error in form.kin_phone.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.kin_phone(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            Genotype
+                                        </span>
+                                    </div>
+                                    {% if form.genotype.errors %}
+                                        {{ form.genotype(class="form-control is-invalid") }}
+                                          {% for error in form.genotype.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.genotype(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            Height
+                                        </span>
+                                    </div>
+                                    {% if form.height.errors %}
+                                        {{ form.height(class="form-control is-invalid") }}
+                                          {% for error in form.height.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.height(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            Remark
+                                        </span>
+                                    </div>
+                                    {% if form.remark.errors %}
+                                        {{ form.remark(class="form-control is-invalid") }}
+                                          {% for error in form.remark.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.remark(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            Status
+                                        </span>
+                                    </div>
+                                    {% if form.status.errors %}
+                                        {{ form.status(class="form-control is-invalid") }}
+                                          {% for error in form.status.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.status(class="form-control") }}
+                                    {% endif %}                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            Disability
+                                        </span>
+                                    </div>
+                                    {% if form.disability.errors %}
+                                        {{ form.disability(class="form-control is-invalid") }}
+                                          {% for error in form.disability.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.disability(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                {{ form.submit(class="btn btn-primary mt-2") }}
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+				</div>
+			</aside>
+		</div>
+
+		<script>
+			$("[data-trigger]").on("click", function (e) {
+	            e.preventDefault();
+	            e.stopPropagation();
+	            var offcanvas_id = $(this).attr("data-trigger");
+	            $(offcanvas_id).toggleClass("show");
+	            $("body").toggleClass("offcanvas-active");
+	            $(".screen-overlay").toggleClass("show");
+	        });
+
+	        $(".btn-close, .screen-overlay").click(function (e) {
+	            $(".screen-overlay").removeClass("show");
+	            $(".offcanvas").removeClass("show");
+	            $("body").removeClass("offcanvas-active");
+	        });
+		</script>
+	</div>
+{% endblock content %}

@@ -1,0 +1,169 @@
+.dashboard-div {
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  margin-bottom: 0px;
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+.card-body h3 {
+  font-family: "IBM_Plex_Sans_SemiBold";
+}
+
+.show-check-items {
+  width: 160px;
+  float: left;
+  text-align: right;
+}
+
+.form-check-input,
+.show-check-labels {
+  cursor: pointer;
+}
+
+.scrollable-calendar-div {
+  width: 100%;
+  height: 58px;
+  clear: both;
+  margin-bottom: 25px;
+}
+
+.sales-and-calender-container-div {
+  clear: both;
+  width: 100%;
+}
+
+.sales-breakdown-div {
+  position: relative;
+  clear: both;
+  width: 100%;
+  height: 340px;
+  cursor: pointer;
+  padding: 20px 30px 20px 30px;
+  margin-bottom: 40px;
+  border: 1px solid #e3e3ea;
+  border-radius: 0.1875rem;
+  background-color: #ffffff;
+  z-index: 100;
+}
+
+.scores-component-div {
+  clear: both;
+  width: 100%;
+  height: auto;
+  margin: 68px 0px;
+  margin-bottom: 160px;
+}
+
+.calendar-div {
+  float: left;
+  width: 10%;
+  height: 55px;
+}
+
+.calendar-card {
+  width: 90%;
+  height: 55px;
+  padding-top: 5px;
+  text-align: center;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.1875rem;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.calendar-card h3 {
+  font-size: 1em;
+  margin-top: 0px;
+}
+
+.calendar-card p {
+  margin-top: -10px;
+}
+
+.day-heading-div {
+  min-width: 240px;
+  width: 20%;
+  height: 50px;
+  float: left;
+}
+
+.tick-div {
+  min-width: 15px;
+  width: 1.66666666666667%;
+  float: left;
+  position: relative;
+  z-index: 300;
+}
+
+.score-div {
+  float: left;
+  width: 20%;
+  margin-bottom: 20px;
+}
+
+.score-div:nth-child(2) {
+  padding-right: 15px;
+}
+
+.score-div:nth-child(3),
+.score-div:nth-child(4),
+.score-div:nth-child(5) {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.score-div:nth-child(6) {
+  padding-left: 15px;
+}
+
+.score-card {
+  position: relative;
+  float: left;
+  height: 55px;
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  padding-top: 5px;
+  padding: 10px 25px 4px 25px;
+  background-color: #ffffff;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.1875rem;
+}
+
+.score-title {
+  clear: both;
+  font-size: 1.125em;
+}
+
+.score-body {
+  width: 70%;
+  float: left;
+  padding: 0;
+}
+
+.score-body h1 {
+  padding: 0px;
+  margin-top: 10px;
+  font-size: 1.425em;
+}
+
+.score-change {
+  width: 30%;
+  float: left;
+  padding-top: 14px;
+  position: relative;
+}
+
+.score-change-value {
+  float: right;
+  margin-right: 20px;
+}
+
+.up-icon {
+  height: 22px;
+  position: absolute;
+  top: 12px;
+  float: right;
+  right: -10px;
+}

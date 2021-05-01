@@ -1,0 +1,138 @@
+.contacts-container-div {
+  min-height: calc(100vh - 100px);
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 40px;
+  margin-bottom: 0px;
+  position: relative;
+}
+
+.contacts-table-div {
+  padding: 20px 30px 10px 30px;
+  background-color: #ffffff;
+  border: 1px solid #e3e3ea;
+  border-radius: 0.1875rem;
+}
+
+.contacts-div {
+  width: 50%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: calc(10px + 0.6vmin);
+}
+
+table,
+th,
+td {
+  border: 0px solid black !important;
+}
+
+.table-thead {
+  border-top: 0px solid #ddd !important;
+}
+
+.table-thead tr {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #ddd !important;
+}
+
+.table-head tr th {
+  width: 14%;
+  border: 0px solid !important;
+  text-align: start !important;
+}
+
+td,
+th {
+  width: 14%;
+  float: left;
+}
+
+.table-tbody tr {
+  height: 50px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-tbody tr:last-child {
+  border-bottom: 0px solid;
+}
+
+.table-tbody tr td {
+  padding: 8px 10px 8px 10px;
+  font-size: 1rem;
+}
+
+.table-tbody tr td .avatar-div,
+.table-tbody tr td .details-div {
+  float: left;
+}
+
+.table-tbody tr td .avatar-div {
+  margin-right: 15px;
+}
+
+.table-tbody tr td {
+  margin: 0px;
+  line-height: 2.4rem;
+}
+
+.action-btn {
+  background-color: #dddddd;
+  border: 1px solid #dddddd;
+  color: #585858;
+  font-size: 0.875rem;
+  height: 30px;
+  padding: 0px 8px;
+}
+
+.action-icon {
+  display: inline-block;
+}
+
+.action-label {
+  display: inline-block;
+  line-height: 1.2rem;
+  padding: 2px 5px 0px 5px;
+  margin-top: 2px;
+}
+
+.action-btn:hover,
+.action-btn:active,
+.action-btn.active,
+.action-btn:visited,
+.action-btn:focus,
+.action-btn.focus {
+  background-color: #dddddd !important;
+  border: 1px solid #dddddd !important;
+  color: #585858;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn-secondary:active .btn-secondary.active {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(195, 195, 195, 0.25) !important;
+          box-shadow: 0 0 0 0.2rem rgba(195, 195, 195, 0.25) !important;
+}
+
+.btn-secondary:focus .btn-secondary.focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(195, 195, 195, 0.25) !important;
+          box-shadow: 0 0 0 0.2rem rgba(195, 195, 195, 0.25) !important;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active {
+  color: #585858;
+  background-color: #02b875;
+  border-color: #02b875;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(195, 195, 195, 0.25) !important;
+          box-shadow: 0 0 0 0.2rem rgba(195, 195, 195, 0.25) !important;
+}
+
+.google-button {
+  background-color: #4285f4;
+}

@@ -1,0 +1,47 @@
+{% extends "user_layout.html" %}
+{% block content %}
+	<div class="content-container-collapsed">
+		<div class="contacts-container-div">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+			<div class="header">
+				<h1>{{ title }}</h1>
+			</div>
+
+            <div class="container">
+                <div class="card">
+                  <a href="{{ url_for('record') }}">
+                      <div class="card-body text-center">
+                        <h3 style="font-family: 'IBM_Plex_Sans_SemiBold';">Patients</h3>
+                        <p>{{ count_patient }}</p>
+                      </div>
+                  </a>
+                </div>
+                <div class="card">
+                  <a href="{{ url_for('staff') }}">
+                    <div class="card-body text-center">
+                        <h3 style="font-family: 'IBM_Plex_Sans_SemiBold';">Staff</h3>
+                        <p>{{ count_staff }}</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="card">
+                  <a href="{{ url_for('diagnosis') }}">
+                      <div class="card-body text-center">
+                        <h3 style="font-family: 'IBM_Plex_Sans_SemiBold';">Diagnosis</h3>
+                        <p>{{ count_diagnosis }}</p>
+                      </div>
+                  </a>
+                </div>
+            </div>
+			
+		</div>
+	</div>
+{% endblock content %}

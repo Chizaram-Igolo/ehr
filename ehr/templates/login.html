@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+  <main class="form-signin col col-sm-8 col-md-6, col-lg-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <h1 class="mb-4 text-center">E-Health Records</h1>
+        <p class="mb-4 fw-normal">
+          Please sign in to continue or use a
+          <a href="{{ url_for('home') }}">Demo account.</a>
+        </p>
+
+        <div class="form-floating">
+          {% if form.name.errors %}
+            {{ form.name(class="form-control mb-3 is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.name.errors %}
+                <span>{{ error }}</span><br/><br/>
+              {% endfor %}
+            </div>
+          {% else %} 
+            {{ form.name(class="form-control mb-3") }}
+          {% endif %}
+          {{ form.name.label(class="form-control-label") }}
+        </div>
+        <div class="form-floating">
+          {% if form.password.errors %}
+            {{ form.password(class="form-control mb-3 is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.password.errors %}
+                <span>{{ error }}</span><br/><br/>
+              {% endfor %}
+            </div>
+          {% else %} 
+            {{ form.password(class="form-control mb-3") }}
+          {% endif %}
+          {{ form.password.label(class="form-control-label") }}
+        </div>
+        <button
+          class="w-100 btn btn-md btn-success"
+          type="submit"
+        >
+          Sign in
+        </button>
+      </form>
+        <p class="mt-3">Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a></p>
+    </main>
+</div>
+	
+{% endblock content %}

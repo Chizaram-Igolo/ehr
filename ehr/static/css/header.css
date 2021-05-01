@@ -1,0 +1,34 @@
+.header {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.header h1 {
+  padding: 0px;
+  text-align: left;
+  font-size: 2.6em;
+  line-height: 4.9375rem;
+  padding: 64px 0px 10px 0px;
+}
+
+.header .btn {
+  position: absolute;
+  right: 50px;
+}
+
+.global-search-bar,
+.global-search-bar:focus {
+  margin-top: 16px;
+  border: none;
+  background-color: #e3e0da;
+  background-color: transparent;
+  border-bottom: 2px solid #dadada;
+  border-radius: 0;
+  font-size: 1.18rem;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding-left: 0;
+}

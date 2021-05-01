@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+
+  	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/navbar.css') }}" />
+  	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/records.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/empty.css') }}">
+
+    {% if title %}
+  		<title>Electronic Health Records - {{ title }}</title>
+  	{% else %}
+  		<title>Electronic Health Records</title>
+  	{% endif %}
+    
+  	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  	<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+    {% if request.path != url_for('login') and request.path != url_for('register') %}    		
+    	<div class="nav-bar navBar">
+    			<ul>
+            <div class="mt-5"></div>
+            <br/>
+            {% if current_user.name %} 
+                <li class="nav-bar-link-li-first" style="font-size: 1em;">Signed in as: <br/><strong>{{ current_user.name }}</strong></li><br/>
+            {% else %} 
+                <li class="nav-bar-link-li-first" style="font-size: 1em;">Signed in as: <br/><strong>Demo User</strong></li><br/>
+            {% endif %}
+            <br/>
+            <li class="nav-bar-link-li">
+              <a class="svg" href="{{ url_for('home') }}">
+                Home
+              </a>
+            </li>
+    				<li class="nav-bar-link-li">
+    					<a class="svg" href="{{ url_for('record') }}">
+                Patients
+    					</a>
+    				</li>
+            <li class="nav-bar-link-li">
+              <a class="svg" href="{{ url_for('staff') }}">
+                Staff
+              </a>
+            </li>
+            <li class="nav-bar-link-li">
+              <a class="svg" href="{{ url_for('diagnosis') }}">
+                Diagnosis
+              </a>
+            </li>
+            <br/><br/>
+            <li class="nav-bar-link-li">
+              <a class="svg" href="{{ url_for('logout') }}">
+                Logout
+              </a>
+            </li>
+    			</ul>
+
+    			
+    				</ul>
+    			</div>
+    		</div>
+    	{% endif %}
+    	{% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

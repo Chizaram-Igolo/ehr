@@ -1,0 +1,188 @@
+{% extends "user_layout.html" %}
+{% block content %}
+	<div class="content-container-collapsed">
+		<div class="contacts-container-div">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+			<div class="header">
+				<h1>{{ title }}</h1>
+
+
+            {% if diagnoses.items|length > 0 %}
+				<button type="button" class="btn btn-primary" 
+						data-trigger="#side-menu" 
+						style="position: absolute; top: 90px; right: 0px;">+ Add Record</button>
+            {% endif %}
+
+			</div>
+
+            {% if diagnoses.items|length > 0 %}
+                <div class="contacts-table-div">
+                <table class="table">
+                    <thead class="table-thead">
+                        <tr>
+                            <th>Patient No.</th>
+                            <th>Ailment</th>
+                            <th>Treatment</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                        {% for diagnosis in diagnoses.items %}
+                            <tr>
+                                <td>
+                                    <div class="details-div">
+                                        <a href="{{ url_for('single_diagnosis', diagnosis_id=diagnosis.id) }}">
+                                            {{ diagnosis.patient_number }} <br/>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>{{ diagnosis.ailment }}</td>
+                                <td>{{ diagnosis.treatment }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+                <br/>
+            {% for page_num in diagnoses.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if page_num %}
+                {% if diagnoses.page == page_num %}
+                    <a class="btn btn-success mb-4" href="{{ url_for('record', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %} 
+
+        {% else %}
+
+
+			<div class="emptystate-div">
+				<p>
+				<img src="{{ url_for('static', filename='svgs/person-add-outline.svg') }}" width="48px" style="color: #DDDDDD;"/>
+				</p>
+				<h3>You have no records yet</h3>
+				<p>
+                    Let's help you begin organizing your
+                    records. Click the button below to get
+                    started.
+                </p>
+                <button type="button"
+                        class="btn btn-primary"
+                        data-trigger="#side-menu">Add Record</button>
+			</div>
+        {% endif %}
+
+			<b class="screen-overlay"></b>
+			<aside class="offcanvas" id="side-menu">
+				<header class="p-4 bg-light border-bottom side-menu-header">
+					<h4 class="top-side-heading">Add Record</h4>
+					<button class="btn btn-danger btn-close">Close</button>
+				</header>
+
+				<div class="side-menu-div">
+					<div class="accordion" id="accordionExample">
+                      <div class="card">
+                        <h2 class="card-header" id="headingOne">
+                          <button class="btn btn-link btn-block text-left" 
+                          type="button" data-toggle="collapse" 
+                          data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h4>Diagnosis Information</h4>
+                            <p class="top-side-p">Please, enter in diagnosis information</p>
+                          </button>
+                        </h2>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                          <div class="card-body">
+                            <form method="POST" action="" class="mt-4" enctype="multipart/form-data">
+                                {{ form.hidden_tag() }}
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Patient Number
+                                        </span>
+                                    </div>
+                                    {% if form.patient_number.errors %}
+                                        {{ form.patient_number(class="form-control is-invalid") }}
+                                          {% for error in form.patient_number.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.patient_number(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Ailment
+                                        </span>
+                                    </div>
+                                    {% if form.ailment.errors %}
+                                        {{ form.ailment(class="form-control is-invalid") }}
+                                          {% for error in form.ailment.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.ailment(class="form-control") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span
+                                            class="input-group-text"
+                                            id="basic-addon2"
+                                        >
+                                            Treatment
+                                        </span>
+                                    </div>
+                                    {% if form.treatment.errors %}
+                                        {{ form.treatment(class="form-control is-invalid") }}
+                                          {% for error in form.treatment.errors %}
+                                            <span>{{ error }}</span><br/><br/>
+                                          {% endfor %}
+                                        {% else %} 
+                                        {{ form.treatment(class="form-control") }}
+                                    {% endif %}
+                                </div>             
+                                {{ form.submit(class="btn btn-primary mt-2") }}
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+				</div>
+			</aside>
+		</div>
+
+		<script>
+			$("[data-trigger]").on("click", function (e) {
+	            e.preventDefault();
+	            e.stopPropagation();
+	            var offcanvas_id = $(this).attr("data-trigger");
+	            $(offcanvas_id).toggleClass("show");
+	            $("body").toggleClass("offcanvas-active");
+	            $(".screen-overlay").toggleClass("show");
+	        });
+
+	        $(".btn-close, .screen-overlay").click(function (e) {
+	            $(".screen-overlay").removeClass("show");
+	            $(".offcanvas").removeClass("show");
+	            $("body").removeClass("offcanvas-active");
+	        });
+		</script>
+	</div>
+{% endblock content %}

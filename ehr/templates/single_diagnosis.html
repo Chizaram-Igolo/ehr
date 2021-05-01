@@ -1,0 +1,44 @@
+{% extends "user_layout.html" %}
+{% block content %}
+	<div class="content-container-collapsed" style="
+  overflow-y: visible;">
+		<div class="contacts-container-div">
+			<div class="header">
+				<h1>{{ title }} - Information</h1>
+        <a href="{{ url_for('staff') }}" 
+            style="position: absolute; top: 100px; right: 0px; font-size: 1.2em; font-weight: 600;">Go Back</a>
+
+			<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"  style="position: absolute; top: 150px; right: 0px">
+              Delete
+            </button>
+            </div>
+            <br/>
+
+            <div class="contacts-table-div">
+                <p><strong>Patient Number:</strong> {{ diagnosis.patient_number }}</p>
+                <p><strong>Ailment:</strong> {{ diagnosis.ailment }}</p>
+                <p><strong>Treatment:</strong> {{ diagnosis.treatment }}</p>
+            </div>
+        <br/>
+	</div>
+
+     <!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Diagnosis?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="{{ url_for('delete_diagnosis', diagnosis_id=diagnosis.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

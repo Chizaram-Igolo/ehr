@@ -1,0 +1,321 @@
+@font-face {
+    font-family: "IBM_Plex_Sans";
+    src: url("../fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "IBM_Plex_Sans_SemiBold";
+    src: url("../fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto/Roboto-Regular.ttf");
+}
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+}
+
+html {
+    background-color: #f3f0ea !important;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* font-family: "Graphik", sans-serif; */
+    font-size: 1rem;
+    color: #181818;
+    background-color: #f3f0ea;
+}
+
+body h1 {
+    font-size: 2.6rem;
+    font-family: IBM_Plex_Sans;
+    font-weight: 800;
+}
+
+body h2 {
+    font-family: IBM_Plex_Sans;
+    font-size: 1.6em;
+}
+
+body h3 {
+    font-family: IBM_Plex_Sans;
+    font-size: 1.4em;
+}
+
+body p,
+body span {
+    font-family: IBM_Plex_Sans;
+    font-size: 1em;
+    /* font-weight: 800; */
+}
+
+body table {
+    /* font-family: Graphik; */
+    font-size: 1em;
+}
+
+body button {
+    /* font-family: IBM_Plex_Sans; */
+    font-size: 0.9em;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+* {
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+}
+
+a {
+  color: #333;
+}
+
+.header {
+  padding: 10px;
+}
+
+.top-nav-bar {
+  width: 100%;
+  height: 50px;
+  background-color: #181818;
+}
+
+.content-container-expanded {
+  min-width: 1500px;
+  width: calc(80vw);
+  float: left;
+  margin-left: 200px;
+  padding-top: 10px;
+  -webkit-transition: margin-left 0.5s;
+  transition: margin-left 0.5s;
+  overflow: hidden;
+}
+
+.content-container-collapsed {
+  width: calc(100vw - 280px);
+  float: left;
+  margin-left: 250px;
+  padding-top: 10px;
+  -webkit-transition: margin-left 0.5s;
+  transition: margin-left 0.5s;
+  overflow: hidden;
+}
+
+button {
+  cursor: pointer;
+}
+
+.empty-action-button {
+  z-index: 600;
+}
+
+.hidden {
+  display: none;
+}
+
+.heavy-font {
+  font-weight: 200;
+}
+
+.dashboard-section-heading {
+  font-size: 1.4em;
+  font-family: "IBM_Plex_Sans_SemiBold";
+  margin-bottom: 30px;
+}
+
+.content-link-item {
+  color: #000;
+}
+
+.link-button {
+  color: #ffffff;
+  text-decoration: none !important;
+}
+
+.link-button:active,
+.link-button:visited,
+.link-button:focus {
+  text-decoration: none !important;
+  color: #ffffff;
+}
+
+.inputfile {
+  cursor: pointer;
+}
+
+.bg-grey {
+  min-height: 100vh;
+  background-color: #f3f0ea;
+}
+
+.page-content-container {
+  width: 64%;
+  margin: 0 18%;
+}
+
+.page-heading {
+  padding: 90px 0px 50px 0px;
+}
+
+.tagline {
+  font-size: 1.4rem;
+}
+
+.page-heading h1 {
+  font-family: "IBM_Plex_Sans_SemiBold";
+  font-size: 3.75em;
+  line-height: 4.9375rem;
+  margin-bottom: 30px;
+  color: #181818;
+}
+
+.screen-overlay {
+  height: 100%;
+  z-index: 300;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(34, 34, 34, 0.1);
+  -webkit-transition: opacity 0.2s linear, visibility 0.1s, width 1s ease-in;
+  transition: opacity 0.2s linear, visibility 0.1s, width 1s ease-in;
+}
+
+.screen-overlay.show {
+  -webkit-transition: opacity 0.5s ease, width 0s;
+  transition: opacity 0.5s ease, width 0s;
+  opacity: 1;
+  width: 100%;
+  visibility: visible;
+  z-index: 300;
+}
+
+.offcanvas {
+  width: 400px;
+  visibility: hidden;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  border-radius: 0;
+  -webkit-box-shadow: 0 5px 5px rgba(50, 50, 50, 0.2);
+          box-shadow: 0 5px 5px rgba(50, 50, 50, 0.2);
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 1200;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+.side-menu-div {
+  padding: 0px 0px 25px 0px;
+}
+
+.side-menu-div h4 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-family: IBM_Plex_Sans_SemiBold;
+}
+
+.side-menu-div p {
+  margin-bottom: 10px;
+}
+
+p.top-side-p {
+  margin-bottom: 0px;
+}
+
+.side-menu-div .info-p {
+  padding: 0px 25px;
+}
+
+.offcanvas.show {
+  visibility: visible;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.side-menu-header {
+  height: 80px;
+}
+
+.top-side-heading {
+  position: absolute;
+  top: 25px;
+}
+
+.side-menu-div .card {
+  padding: 10px 25px;
+  border-radius: 0;
+}
+
+.side-menu-div .card-header {
+  padding: 0px 0px !important;
+  border: none;
+}
+
+.side-menu-div .card-header button {
+  padding: 0px 0px !important;
+  color: #181818;
+  text-decoration: none;
+  background-color: #ffffff !important;
+  border: none;
+}
+
+.side-menu-div .card-header button:focus {
+  text-decoration: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.side-menu-div .card-body {
+  padding: 25px 0px !important;
+  border: none;
+}
+
+.btn-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px 15px;
+}
+
+.btn-danger {
+  background-color: #e85565 !important;
+  border-color: #e85565 !important;
+}
+
+.btn-danger:active {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(208, 80, 95, 0.105) !important;
+          box-shadow: 0 0 0 0.2rem rgba(208, 80, 95, 0.105) !important;
+}
+
+.btn-danger:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(208, 80, 95, 0.105) !important;
+          box-shadow: 0 0 0 0.2rem rgba(208, 80, 95, 0.105) !important;
+}
