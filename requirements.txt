@@ -31,6 +31,7 @@ jmespath==0.10.0
 MarkupSafe==1.1.1
 pathspec==0.5.9
 Pillow==8.2.0
+psycopg2==2.8.6
 pycparser==2.20
 PyMySQL==1.0.2
 python-dateutil==2.8.1
